@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tool type="plugin">
+
+    <src>
+        <![CDATA[function listener (eventname, data, visible) {
+            if (eventname == 'THEME_VISIBILITY_CHANGED' && visible) {
+            var req = spm.getSession().createPageRequest('sps_analytics.write');
+            req.call({
+                'sessionid': spm.getSessionId(),
+                'themename': data.name,
+                'displayname': data._displayname,
+                'datasourcename': data._initialConfig.primarydatasource
+                }, function(response) {
+            })
+            
+            }
+        }
+        
+        var themeListener = spm.addListener('THEME_VISIBILITY_CHANGED', listener)]]>
+    </src>
+</tool>

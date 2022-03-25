@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deploy>
+     
+    <version>4.2.1</version>          <!-- The version of SpatialMap this module comes from -->
+    <lastupdated>4.2.1</lastupdated>  <!-- The SpatialMap version this module was last updated -->
+    <since>4.2.1</since>               <!-- The SpatialMap version this module was introduced in -->
+    <description>En erstatning af Google Analytics. SpS analytics kører på events fra sps og gemmer data i postgres</description>       <!-- Short description of this module (shown in the admin console) -->
+
+</deploy>

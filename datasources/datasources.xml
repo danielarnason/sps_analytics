@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datasources>
+
+    <endpoint endpointtype="postgis" name="ep_sps_analytics">
+        <connect>[module.sps_analytics.db.connect]</connect>
+        <user>[module.sps_analytics.db.user]</user>
+        <pwd>[module.sps_analytics.db.pwd]</pwd>
+    </endpoint>
+
+    <datasource displayname="sps_analytics" endpoint="ep_sps_analytics" name="sps_analytics">
+        <sql command="insert-theme-interaction">
+            insert into sps_analytics.themes_interactions(session_id, event, displayname, themefile_name, datasource_name) values([string: sessionid], 'THEME_VISIBILITY_CHANGED', [string: displayname], [string: themename], [string: datasourcename])
+        </sql>
+        <sql command="read-all">
+            select * from sps_analytics.themes_interactions;
+        </sql>
+    </datasource>
+</datasources>
