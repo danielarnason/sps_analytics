@@ -10,7 +10,11 @@
                 'sessionid': spm.getSessionId(),
                 'themename': data.name,
                 'displayname': data._displayname,
-                'datasourcename': data._initialConfig.primarydatasource
+                'datasourcename': data._initialConfig.primarydatasource,
+                'site': window.location.host,
+                'profile': spm.getProfile(),
+                'site': window.location.host,
+                'profile': spm.getProfile()
                 }, function(response) {
             })
             

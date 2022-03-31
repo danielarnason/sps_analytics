@@ -8,5 +8,7 @@ create table sps_analytics.themes_interactions(
 	"time" timestamp default now(),
 	displayname varchar(255),
 	themefile_name varchar(255),
-	datasource_name varchar(255)
+	datasource_name varchar(255),
+	site varchar(255),
+	profile varchar(255)
 )

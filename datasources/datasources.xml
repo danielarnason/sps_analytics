@@ -9,7 +9,7 @@
 
     <datasource displayname="sps_analytics" endpoint="ep_sps_analytics" name="sps_analytics">
         <sql command="insert-theme-interaction">
-            insert into sps_analytics.themes_interactions(session_id, event, displayname, themefile_name, datasource_name) values([string: sessionid], 'THEME_VISIBILITY_CHANGED', [string: displayname], [string: themename], [string: datasourcename])
+            insert into sps_analytics.themes_interactions(session_id, event, displayname, themefile_name, datasource_name, site, profile) values([string: sessionid], 'THEME_VISIBILITY_CHANGED', [string: displayname], [string: themename], [string: datasourcename], [string: site], [string: profile])
         </sql>
         <sql command="read-all">
             select * from sps_analytics.themes_interactions;
