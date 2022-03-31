@@ -3,24 +3,36 @@
 <tool type="plugin">
 
     <src>
-        <![CDATA[function listener (eventname, data, visible) {
+        <![CDATA[
+        var themeListener = spm.addListener('THEME_VISIBILITY_CHANGED', function(eventname, data, visible) {
             if (eventname == 'THEME_VISIBILITY_CHANGED' && visible) {
-            var req = spm.getSession().createPageRequest('sps_analytics.write');
-            req.call({
-                'sessionid': spm.getSessionId(),
-                'themename': data.name,
-                'displayname': data._displayname,
-                'datasourcename': data._initialConfig.primarydatasource,
-                'site': window.location.host,
-                'profile': spm.getProfile(),
-                'site': window.location.host,
-                'profile': spm.getProfile()
-                }, function(response) {
-            })
-            
+                var req = spm.getSession().createPageRequest('sps_analytics.write_theme');
+                req.call({
+                    'sessionid': spm.getSessionId(),
+                    'themename': data.name,
+                    'displayname': data._displayname,
+                    'datasourcename': data._initialConfig.primarydatasource,
+                    'site': window.location.host,
+                    'profile': spm.getProfile(),
+                    'site': window.location.host,
+                    'profile': spm.getProfile()
+                    }, function(response) {
+                })
             }
-        }
+        })
         
-        var themeListener = spm.addListener('THEME_VISIBILITY_CHANGED', listener)]]>
+        var buttonListener = spm.addListener('BUTTON_CLICKED', function(eventname, button) {
+            if (button.type == 'button' || (button.type == 'menu' && button._state)) {
+                var req = spm.getSession().createPageRequest('sps_analytics.write_button_click');
+                req.call({
+                    'sessionid': spm.getSessionId(),
+                    'displayname': button.displayname,
+                    'buttonname': button.name,
+                    'buttontype': button.type,
+                    'site': window.location.host,
+                    'profile': spm.getProfile()
+                }, function (response) {})
+            }
+        })]]>
     </src>
 </tool>

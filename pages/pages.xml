@@ -10,7 +10,7 @@
         </data>
     </page>
 
-    <page name="sps_analytics.write">
+    <page name="sps_analytics.write_theme">
 
         <url-parameters>
             <url-parameter name="sessionid">
@@ -43,6 +43,42 @@
             <url-parameters>
                 <url-parameter name="datasource" value="sps_analytics"/>
                 <url-parameter name="command" value="insert-theme-interaction"/>
+            </url-parameters>
+        </data>
+    </page>
+    <page name="sps_analytics.write_button_click">
+
+        <url-parameters>
+            <url-parameter name="sessionid">
+                if isDefined(sessionid) then sessionid
+                else "" endif
+            </url-parameter>
+            <url-parameter name="displayname">
+                if isDefined(displayname) then displayname
+                else "" endif
+            </url-parameter>
+            <url-parameter name="buttonname">
+                if isDefined(buttonname) then buttonname
+                else "" endif
+            </url-parameter>
+            <url-parameter name="buttontype">
+                if isDefined(buttontype) then buttontype
+                else "" endif
+            </url-parameter>
+            <url-parameter name="site">
+                if isDefined(site) then site
+                else "" endif
+            </url-parameter>
+            <url-parameter name="profile">
+                if isDefined(profile) then profile
+                else "" endif
+            </url-parameter>
+        </url-parameters>
+
+        <data handler="datasource" operation="execute-command">
+            <url-parameters>
+                <url-parameter name="datasource" value="sps_analytics"/>
+                <url-parameter name="command" value="insert-button-click"/>
             </url-parameters>
         </data>
     </page>

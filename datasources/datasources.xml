@@ -11,6 +11,9 @@
         <sql command="insert-theme-interaction">
             insert into sps_analytics.themes_interactions(session_id, event, displayname, themefile_name, datasource_name, site, profile) values([string: sessionid], 'THEME_VISIBILITY_CHANGED', [string: displayname], [string: themename], [string: datasourcename], [string: site], [string: profile])
         </sql>
+        <sql command="insert-button-click">
+            insert into sps_analytics.button_clicks(session_id, event, displayname, buttonname, buttontype, site, profile) values([string: sessionid], 'BUTTON_CLICKED', [string: displayname], [string: buttonname], [string: buttontype], [string: site], [string: profile])
+        </sql>
         <sql command="read-all">
             select * from sps_analytics.themes_interactions;
         </sql>
