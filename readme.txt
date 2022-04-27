@@ -10,7 +10,7 @@ INSTALLATION
     <param name="module.sps_analytics.db.pwd" hidden="true">YYY</param>
 
 3. Tilføj modul i modulfil
-    <modul name="sps_analytics" dir="custom/sps_analytics" permissionlevel="public" />
+    <module name="sps_analytics" dir="custom/sps_analytics" permissionlevel="public" />
 
 4. Tilføj tool i profil
     <tool module="sps_analytics" name="sps_analytics"/>
