@@ -14,8 +14,36 @@
         <sql command="insert-button-click">
             insert into sps_analytics.button_clicks(session_id, event, displayname, buttonname, buttontype, site, profile) values([string: sessionid], 'BUTTON_CLICKED', [string: displayname], [string: buttonname], [string: buttontype], [string: site], [string: profile])
         </sql>
-        <sql command="read-all">
-            select * from sps_analytics.themes_interactions;
+        <sql command="read-theme-data">
+            select 
+                date("time") as dato,
+                count(*) as count
+            from sps_analytics.themes_interactions
+            where themefile_name = [string:themefile_name]
+            group by dato
+            order by dato;
         </sql>
+        <sql command="read-top10-themes">
+            select 
+                displayname,
+                themefile_name,
+                count(*) as count
+            from sps_analytics.themes_interactions
+            where "time" > (current_timestamp - '30 days'::interval) and site = 'webgis.slagelse.dk' 
+            group by displayname, themefile_name
+            order by count desc
+            limit 10;
+        </sql>
+        <sql command="read-top10-tools">
+            select 
+                displayname,
+                count(*) as count
+            from sps_analytics.button_clicks
+            where "time" > (current_timestamp - '30 days'::interval) and buttontype = 'button' and site = 'webgis.slagelse.dk'
+            group by displayname, buttonname
+            order by count desc
+            limit 10;
+        </sql>
+        <table name="sps_analytics.themes_interactions"/>
     </datasource>
 </datasources>

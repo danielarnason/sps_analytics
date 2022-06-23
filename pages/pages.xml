@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pages>
 
-    <page name="sps_analytics.test">
+    <!-- <page name="sps_analytics.test">
         <data handler="datasource" operation="execute-command">
             <url-parameters>
                 <url-parameter name="datasource" value="sps_analytics"/>
                 <url-parameter name="command" value="read-all"/>
             </url-parameters>
         </data>
-    </page>
+    </page> -->
 
     <page name="sps_analytics.write_theme">
 
@@ -83,4 +83,36 @@
         </data>
     </page>
 
+    <page name="sps_analytics-read-theme-data">
+        <url-parameters>
+            <url-parameter name="themefile_name">
+                if isDefined(themefile_name) then themefile_name
+                else "" endif
+            </url-parameter>
+        </url-parameters>
+        <data handler="datasource" operation="execute-command">
+            <url-parameters>
+                <url-parameter name="datasource" value="sps_analytics"/>
+                <url-parameter name="command" value="read-theme-data"/>
+            </url-parameters>
+        </data>
+    </page>
+
+    <page name="sps_analytics-read-top10-themes">
+        <data handler="datasource" operation="execute-command">
+            <url-parameters>
+                <url-parameter name="datasource" value="sps_analytics"/>
+                <url-parameter name="command" value="read-top10-themes"/>
+            </url-parameters>
+        </data>
+    </page>
+
+    <page name="sps_analytics-read-top10-tools">
+        <data handler="datasource" operation="execute-command">
+            <url-parameters>
+                <url-parameter name="datasource" value="sps_analytics"/>
+                <url-parameter name="command" value="read-top10-tools"/>
+            </url-parameters>
+        </data>
+    </page>
 </pages>

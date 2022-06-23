@@ -1,0 +1,8 @@
+#topList > table {
+    width: 100%;
+    height: 100%;
+}
+
+#topList > table > tbody > tr > td {
+    padding: 5px;
+}
