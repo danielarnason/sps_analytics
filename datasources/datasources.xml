@@ -17,6 +17,9 @@
         <sql command="insert-search-result">
             insert into sps_analytics.search_results(session_id, service, title, text, wkt, site, profile) values([string: sessionid], [string: service], [string:title], [string: text], [string: wkt], [string: site], [string: profile])
         </sql>
+        <sql command="insert-error">
+            insert into sps_analytics.errors(session_id, severity, error_text, error_title, site, profile) values([string: sessionid], [string: severity], [string: error_text], [string: error_title], [string: site], [string: profile])
+        </sql>
         <table name="sps_analytics.themes_interactions"/>
     </datasource>
 </datasources>
