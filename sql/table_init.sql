@@ -23,3 +23,13 @@ create table sps_analytics.button_clicks(
 	site varchar(255),
 	profile varchar(255)
 )
+
+create table sps_analytics.search_results(
+	session_id varchar,
+	"time" timestamp default now(),
+	service varchar,
+	title varchar,
+	wkt varchar,
+	site varchar,
+	profile varchar
+)

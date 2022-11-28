@@ -14,8 +14,9 @@
         <sql command="insert-button-click">
             insert into sps_analytics.button_clicks(session_id, event, displayname, buttonname, buttontype, site, profile) values([string: sessionid], 'BUTTON_CLICKED', [string: displayname], [string: buttonname], [string: buttontype], [string: site], [string: profile])
         </sql>
-        <sql command="read-all">
-            select * from sps_analytics.themes_interactions;
+        <sql command="insert-search-result">
+            insert into sps_analytics.search_results(session_id, service, title, text, wkt, site, profile) values([string: sessionid], [string: service], [string:title], [string: text], [string: wkt], [string: site], [string: profile])
         </sql>
+        <table name="sps_analytics.themes_interactions"/>
     </datasource>
 </datasources>

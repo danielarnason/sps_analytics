@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pages>
 
-    <page name="sps_analytics.test">
-        <data handler="datasource" operation="execute-command">
-            <url-parameters>
-                <url-parameter name="datasource" value="sps_analytics"/>
-                <url-parameter name="command" value="read-all"/>
-            </url-parameters>
-        </data>
-    </page>
-
     <page name="sps_analytics.write_theme">
 
         <url-parameters>
@@ -83,4 +74,77 @@
         </data>
     </page>
 
+    <page name="sps_analytics-read-theme-data">
+        <url-parameters>
+            <url-parameter name="themefile_name">
+                if isDefined(themefile_name) then themefile_name
+                else "" endif
+            </url-parameter>
+        </url-parameters>
+        <data handler="datasource" operation="execute-command">
+            <url-parameters>
+                <url-parameter name="datasource" value="sps_analytics"/>
+                <url-parameter name="command" value="read-theme-data"/>
+            </url-parameters>
+        </data>
+    </page>
+
+    <page name="sps_analytics-read-top10-themes">
+        <data handler="datasource" operation="execute-command">
+            <url-parameters>
+                <url-parameter name="datasource" value="sps_analytics"/>
+                <url-parameter name="command" value="read-top10-themes"/>
+            </url-parameters>
+        </data>
+    </page>
+
+    <page name="sps_analytics-read-top10-tools">
+        <data handler="datasource" operation="execute-command">
+            <url-parameters>
+                <url-parameter name="datasource" value="sps_analytics"/>
+                <url-parameter name="command" value="read-top10-tools"/>
+            </url-parameters>
+        </data>
+    </page>
+
+    <page name="sps_analytics.write_search_result">
+
+        <url-parameters>
+            <url-parameter name="sessionid">
+                if isDefined(sessionid) then sessionid
+                else "" endif
+            </url-parameter>
+            <url-parameter name="service">
+                if isDefined(service) then service
+                else "" endif
+            </url-parameter>
+            <url-parameter name="title">
+                if isDefined(title) then title
+                else "" endif
+            </url-parameter>
+            <url-parameter name="text">
+                if isDefined(text) then text
+                else "" endif
+            </url-parameter>
+            <url-parameter name="wkt">
+                if isDefined(wkt) then wkt
+                else "" endif
+            </url-parameter>
+            <url-parameter name="site">
+                if isDefined(site) then site
+                else "" endif
+            </url-parameter>
+            <url-parameter name="profile">
+                if isDefined(profile) then profile
+                else "" endif
+            </url-parameter>
+        </url-parameters>
+
+        <data handler="datasource" operation="execute-command">
+            <url-parameters>
+                <url-parameter name="datasource" value="sps_analytics"/>
+                <url-parameter name="command" value="insert-search-result"/>
+            </url-parameters>
+        </data>
+    </page>
 </pages>

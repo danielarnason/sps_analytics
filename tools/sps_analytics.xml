@@ -20,6 +20,19 @@
                 })
             }
         })
+
+        var searchresultListener = spm.addListener('SEARCH_RESULT_SELECTED', function(eventname, data) {
+            var req = spm.getSession().createPageRequest('sps_analytics.write_search_result')
+            req.call({
+                'sessionid': spm.getSessionId(),
+                'service': data.service,
+                'title': data.title,
+                'text': data.text,
+                'wkt': data.wkt,
+                'site': window.location.host,
+                'profile': spm.getProfile()
+            }, function (response) {})
+        })
         
         var buttonListener = spm.addListener('BUTTON_CLICKED', function(eventname, button) {
             if (button.type == 'button' || (button.type == 'menu' && button._state)) {
