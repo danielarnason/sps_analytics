@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pages>
 
+    <page name="sps_analytics.test">
+        <data handler="datasource" operation="execute-command">
+            <url-parameters>
+                <url-parameter name="datasource" value="sps_analytics"/>
+                <url-parameter name="command" value="read-all"/>
+            </url-parameters>
+        </data>
+    </page>
+
     <page name="sps_analytics.write_theme">
 
         <url-parameters>
@@ -147,42 +156,4 @@
             </url-parameters>
         </data>
     </page>
-
-    <page name="sps_analytics.write_error">
-
-        <url-parameters>
-            <url-parameter name="sessionid">
-                if isDefined(sessionid) then sessionid
-                else "" endif
-            </url-parameter>
-            <url-parameter name="severity">
-                if isDefined(severity) then severity
-                else "" endif
-            </url-parameter>
-            <url-parameter name="error_text">
-                if isDefined(error_text) then error_text
-                else "" endif
-            </url-parameter>
-            <url-parameter name="error_title">
-                if isDefined(error_title) then error_title
-                else "" endif
-            </url-parameter>
-            <url-parameter name="site">
-                if isDefined(site) then site
-                else "" endif
-            </url-parameter>
-            <url-parameter name="profile">
-                if isDefined(profile) then profile
-                else "" endif
-            </url-parameter>
-        </url-parameters>
-
-        <data handler="datasource" operation="execute-command">
-            <url-parameters>
-                <url-parameter name="datasource" value="sps_analytics"/>
-                <url-parameter name="command" value="insert-error"/>
-            </url-parameters>
-        </data>
-    
-    </page>"
 </pages>

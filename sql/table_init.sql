@@ -33,13 +33,3 @@ create table sps_analytics.search_results(
 	site varchar,
 	profile varchar
 )
-
-create table sps_analytics.errors(
-	session_id varchar,
-	"time" timestamp default now(),
-	severity varchar,
-	error_text varchar,
-	error_title varchar,
-	site varchar,
-	profile varchar
-)

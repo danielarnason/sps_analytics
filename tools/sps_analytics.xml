@@ -33,20 +33,6 @@
                 'profile': spm.getProfile()
             }, function (response) {})
         })
-
-        var errorListener = spm.addListener('MINIMAP_NOTIFICATION', function(eventname, severity, text, title) {
-            if (severity != "INFO") {
-                var req = spm.getSession().createPageRequest('sps_analytics.write_error')
-                req.call({
-                    'sessionid': spm.getSessionId(),
-                    'severity': severity,
-                    'error_text': text,
-                    'error_title': title,
-                    'site': window.location.host,
-                    'profile': spm.getProfile()
-                }, function(response) {})
-            }
-        })
         
         var buttonListener = spm.addListener('BUTTON_CLICKED', function(eventname, button) {
             if (button.type == 'button' || (button.type == 'menu' && button._state)) {
