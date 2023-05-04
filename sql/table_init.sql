@@ -33,3 +33,11 @@ create table sps_analytics.search_results(
 	site varchar,
 	profile varchar
 )
+
+create table sps_analytics.session_info (
+	session_id varchar,
+	afdeling varchar,
+	ad_object varchar,
+	site varchar,
+	profile varchar
+)
