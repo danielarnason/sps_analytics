@@ -39,5 +39,6 @@ create table sps_analytics.session_info (
 	afdeling varchar,
 	ad_object varchar,
 	site varchar,
-	profile varchar
+	profile varchar,
+	"time" timestamp default now()
 )
