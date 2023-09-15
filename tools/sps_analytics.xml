@@ -7,20 +7,10 @@
 
         var sessionsInfoListener = spm.addListener('SPATIALMAP_READY', data => {
             let sessionsinfoDs = spm.getSession().getDatasource('sps_session_info')
-            let ad_object = spm.getSession().getPrincipal().id
-            let ad_object_filterRegex = /CN=.*?(?=(OU=|DC=))/g
-            let ad_objectFiltered = ad_object.replace(ad_object_filterRegex, '')
-
-            let afdelingsRegex = /OU=([^,\\]+(?:\\, [^,\\]+)*)(?:,OU=|,DC=|$)/;
-            let regexMatch = ad_objectFiltered.match(afdelingsRegex)
-
-            let afdeling = regexMatch[1].replace(/\\,/g, ',')
 
             sessionsinfoDs.execute({
                 command: 'insert-session-info',
                 session_id: spm.getSessionId(),
-                afdeling: afdeling,
-                ad_object: ad_objectFiltered,
                 site: window.location.host,
                 profile: spm.getProfile()
             })
