@@ -37,10 +37,8 @@ create table sps_analytics.search_results(
 
 create table sps_analytics.session_info (
 	session_id varchar,
-	afdeling varchar,
 	afdeling_ad varchar,
 	center_ad varchar,
-	ad_object varchar,
 	site varchar,
 	profile varchar,
 	"time" timestamp default now()
