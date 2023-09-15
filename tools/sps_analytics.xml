@@ -28,45 +28,48 @@
         
         var themeListener = spm.addListener('THEME_VISIBILITY_CHANGED', function(eventname, data, visible) {
             if (eventname == 'THEME_VISIBILITY_CHANGED' && visible) {
-                var req = spm.getSession().createPageRequest('sps_analytics.write_theme');
-                req.call({
-                    'sessionid': spm.getSessionId(),
-                    'themename': data.name,
-                    'displayname': data._displayname,
-                    'datasourcename': data._initialConfig.primarydatasource,
-                    'site': window.location.host,
-                    'profile': spm.getProfile(),
-                    'site': window.location.host,
-                    'profile': spm.getProfile()
-                    }, function(response) {
+                let analyticsDs = spm.getSession().getDatasource('sps_analytics')
+
+                analyticsDs.execute({
+                    command: 'insert-theme-interaction',
+                    sessionid: spm.getSessionId(),
+                    themename: data.name,
+                    displayname: data._displayname,
+                    datasourcename: data._initialConfig.primarydatasource,
+                    site: window.location.host,
+                    profile: spm.getProfile(),
+                    site: window.location.host,
+                    profile: spm.getProfile()
                 })
             }
         })
 
         var searchresultListener = spm.addListener('SEARCH_RESULT_SELECTED', function(eventname, data) {
-            var req = spm.getSession().createPageRequest('sps_analytics.write_search_result')
-            req.call({
-                'sessionid': spm.getSessionId(),
-                'service': data.service,
-                'title': data.title,
-                'text': data.text,
-                'wkt': data.wkt,
-                'site': window.location.host,
-                'profile': spm.getProfile()
-            }, function (response) {})
+            let analyticsDs = spm.getSession().getDatasource('sps_analytics')
+            analyticsDs.execute({
+                command: 'insert-search-result',
+                sessionid: spm.getSessionId(),
+                service: data.service,
+                title: data.title,
+                text: data.text,
+                wkt: data.wkt,
+                site: window.location.host,
+                profile: spm.getProfile()
+            })
         })
         
         var buttonListener = spm.addListener('BUTTON_CLICKED', function(eventname, button) {
             if (button.type == 'button' || (button.type == 'menu' && button._state)) {
-                var req = spm.getSession().createPageRequest('sps_analytics.write_button_click');
-                req.call({
-                    'sessionid': spm.getSessionId(),
-                    'displayname': button.displayname,
-                    'buttonname': button.name,
-                    'buttontype': button.type,
-                    'site': window.location.host,
-                    'profile': spm.getProfile()
-                }, function (response) {})
+                let analyticsDs = spm.getSession().getDatasource('sps_analytics')
+                analyticsDs.execute({
+                    command: 'insert-button-click',
+                    sessionid: spm.getSessionId(),
+                    displayname: button.displayname,
+                    buttonname: button.name,
+                    buttontype: button.type,
+                    site: window.location.host,
+                    profile: spm.getProfile()
+                })
             }
         })]]>
     </src>
