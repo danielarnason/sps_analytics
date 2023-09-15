@@ -21,7 +21,7 @@
     </datasource>
     <datasource endpoint="ep_sps_analytics" displayname="session_info" name="sps_session_info">
         <sql command="insert-session-info">
-            insert into sps_analytics.session_info(session_id, afdeling, ad_object, site, profile) values([string: session_id], [string: afdeling], [string: ad_object], [string: site], [string: profile])
+            insert into sps_analytics.session_info(session_id, afdeling, ad_object, site, profile, afdeling_ad, center_ad) values([string: session_id], [string: afdeling], [string: ad_object], [string: site], [string: profile], [string: GetUserAttribute(sessionid, 'physicalDeliveryOfficeName')], [string: GetUserAttribute(sessionid, 'department')])
         </sql>
         <table name="sps_analytics.session_info" />
     </datasource>
