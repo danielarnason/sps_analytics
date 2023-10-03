@@ -25,7 +25,7 @@
                     sessionid: spm.getSessionId(),
                     themename: data.name,
                     displayname: data._displayname,
-                    datasourcename: data._initialConfig.primarydatasource,
+                    datasourcename: 'primarydatasource' in data._initialConfig ? data._initialConfig.primarydatasource : 'Ingen primary datasource',
                     site: window.location.host,
                     profile: spm.getProfile(),
                     site: window.location.host,
