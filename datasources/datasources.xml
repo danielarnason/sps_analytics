@@ -7,7 +7,7 @@
         <pwd>[module.sps_analytics.db.pwd]</pwd>
     </endpoint>
 
-    <datasource displayname="sps_analytics" endpoint="ep_sps_analytics" name="sps_analytics">
+    <datasource displayname="sps_analytics" endpoint="ep_k330_dyn" name="sps_analytics">
         <sql command="insert-theme-interaction">
             insert into sps_analytics.themes_interactions(session_id, event, displayname, themefile_name, datasource_name, site, profile) values([string: sessionid], 'THEME_VISIBILITY_CHANGED', [string: displayname], [string: themename], [string: datasourcename], [string: site], [string: profile])
         </sql>
@@ -27,9 +27,35 @@
             order by antal desc 
             limit 10;
         </sql>
+        <sql command="read-theme-interactions-month">
+            WITH date_series AS (
+                SELECT generate_series(
+                    (current_date - interval '1 month')::date, 
+                    current_date::date, 
+                    interval '1 day'
+                )::date AS date
+            )
+            SELECT 
+                ds.date,
+                COUNT(si.*) AS antal
+            FROM 
+                date_series ds
+            LEFT JOIN 
+                sps_analytics.themes_interactions si ON ds.date = date(si."time") AND si.site = 'webgis.slagelse.dk'
+            GROUP BY 
+                ds.date
+            ORDER BY 
+                ds.date ASC;
+        </sql>
+        <sql command="read-antal-theme-interactions-month">
+            select
+                count(*) as antal
+            from sps_analytics.themes_interactions
+            where site = 'webgis.slagelse.dk' and "time" > current_date - interval '1 month'
+        </sql>
         <table name="sps_analytics.themes_interactions"/>
     </datasource>
-    <datasource endpoint="ep_sps_analytics" displayname="button_clicks" name="sps_button_clicks">
+    <datasource endpoint="ep_k330_dyn" displayname="button_clicks" name="sps_button_clicks">
         <sql command="read-top-tools-month">
             select 
                 displayname,
@@ -42,7 +68,7 @@
         </sql>
         <table name="sps_analytics.button_clicks"></table>
     </datasource>
-    <datasource endpoint="ep_sps_analytics" displayname="session_info" name="sps_session_info">
+    <datasource endpoint="ep_k330_dyn" displayname="session_info" name="sps_session_info">
         <sql command="insert-session-info">
             insert into sps_analytics.session_info(session_id, site, profile, afdeling_ad, center_ad) values([string: session_id], [string: site], [string: profile], [string: GetUserAttribute(sessionid, 'physicalDeliveryOfficeName')], [string: GetUserAttribute(sessionid, 'department')])
         </sql>
