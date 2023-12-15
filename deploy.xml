@@ -6,4 +6,6 @@
     <since>4.2.1</since>               <!-- The SpatialMap version this module was introduced in -->
     <description>En erstatning af Google Analytics. SpS analytics kører på events fra sps og gemmer data i postgres</description>       <!-- Short description of this module (shown in the admin console) -->
 
+    <copydir fromdir="[module:sps_analytics.dir]/dashboard" todir="[cbinfo.wwwroot.dir]/modules/sps_analytics" />
+
 </deploy>
