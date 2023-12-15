@@ -26,7 +26,7 @@
                 maintainAspectRatio: false
             }
         )      
-        }, 500);
+        }, 1500);
     })
     
 </script>
